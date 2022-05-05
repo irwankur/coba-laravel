@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\Post;
-
+use App\Http\Controllers\PostController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -45,11 +45,6 @@ Route::get('/about', function () {
     );
 });
 
-Route::get('/blog', function () {
+Route::get('/blog', [PostController::class, 'index']);
 
-    return view('blog', [
-	    	'title' => 'Blog',
-	    	'posts' => Post::alls()  
-    	]
-    );
-});
+Route::get('/posts/{slug}', [PostController::class, 'show']);
