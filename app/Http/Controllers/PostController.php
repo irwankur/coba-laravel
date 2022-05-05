@@ -18,11 +18,11 @@ class PostController extends Controller
 
     }
 
-    public function show($slug){
+    public function show(Post $post){
 
     	return view('posts', [
 		    	'title' => 'Blog',
-		    	'posts' => Post::find($slug)  
+		    	'posts' => $post
 	    	]
 	    );
     }
