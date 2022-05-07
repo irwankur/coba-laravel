@@ -1,15 +1,15 @@
 
+
+
 @extends('layouts.main')
 
 @section('container')
 
-	<h1>{{ $category }}</h1>
-
+	<h1>Post Category {{ $category }}</h1>
 
 	@foreach($posts as $post)
-	@dd($post)
 	<article>
-		<p>By. Irwan Kurniawan in {{ $post->name }}</p>
+		<p>By. Irwan Kurniawan in {{ $post->title }}</p>
 		<p></p>
 	</article>
 	@endforeach
