@@ -5,14 +5,13 @@
 
 @section('container')
 
-	<h1>{{ $title }}</h1>
+	<h1>Post Category {{ $category }}</h1>
 
 	@foreach($posts as $post)
-	<article class="mb-4">
+	<article>
 		<p>By. {{ $post->user->name }} in {{ $post->title }}</p>
 		<p>{{$post->body}}</p>
 	</article>
-	<hr>
 	@endforeach
 
 

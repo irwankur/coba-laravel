@@ -6,7 +6,7 @@
 	<article>
 		<h1>{{ $posts["title"] }}</h1>
 
-		<p>By. Irwan Kurniawan in <a href="/categories/{{ $posts->category->slug }}">{{ $posts->category->name }}</a></p>
+		<p>By. {{ $posts->user->name }} in {{ $posts->category->name }}</p>
 
 		<p>{{ $posts["body"] }}</p>
 		<img src="/img/{{ $posts['image'] }}"> 

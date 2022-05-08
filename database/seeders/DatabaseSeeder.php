@@ -3,6 +3,10 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use App\Models\User;
+use App\Models\Post;
+use App\Models\Category;
+
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,5 +18,45 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
+
+        // User::create([
+        // 	'name' => 'Sandhika Galih',
+        // 	'email' => 'sandhikagalih@gmail.com',
+        // 	'password' => bcrypt('123')
+        // ]);
+
+        User::factory(5)->create();
+
+        Post::factory(20)->create();
+
+
+        Category::create([
+        	'name' => 'Web Programming',
+        	'slug' => 'web-programming'
+        ]);
+
+        Category::create([
+        	'name' => 'Personal',
+        	'slug' => 'personal'
+        ]);
+
+        // Post::create([
+        // 	'title' => 'Judul Pertama',
+        // 	'slug' => 'judul-pertama',
+        // 	'excerpt' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, ed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,',
+        // 	'body' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+        // 	'category_id' => '1',
+        // 	'user_id' => '1'
+        // ]);
+
+        // Post::create([
+        // 	'title' => 'Judul kedua',
+        // 	'slug' => 'judul-kedua',
+        // 	'excerpt' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, ed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,',
+        // 	'body' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+        // 	'category_id' => '2',
+        // 	'user_id' => '1'
+        // ]);
+
     }
 }

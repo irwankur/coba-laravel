@@ -12,17 +12,19 @@ class PostController extends Controller
 
     	return view('blog', [
 		    	'title' => 'Blog',
-		    	'posts' => Post::all()  
+		    	// 'posts' => Post::all()
+		    	'posts' => Post::latest()->get()  
 	    	]
 	    );
 
     }
 
-    public function show(Post $post){
+    public function show(Post $post){ 
 
     	return view('posts', [
 		    	'title' => 'Blog',
-		    	'posts' => $post
+		    	'posts' => $post,
+		    	'category' => $post->category
 	    	]
 	    );
     }
