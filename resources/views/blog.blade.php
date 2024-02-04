@@ -6,27 +6,44 @@
 	
 <?php  
 	
-	Unsplash\HttpClient::init([
-		'applicationId'	=> '6bacSAlEVf5AXehLGziGQzR3HK_4RJQVDTn3eFqs6GI',
-		'secret'	=> '3xU9oEk3rbM2KL0pj2miVezvB3pVzYsgI4snTWuX7dQ',
-		'callbackUrl'	=> 'http://localhost:8000/blog',
-		'utmSource' => 'learning'
-	]);
+// 	Unsplash\HttpClient::init([
+// 		'applicationId'	=> '6bacSAlEVf5AXehLGziGQzR3HK_4RJQVDTn3eFqs6GI',
+// 		'secret'	=> '3xU9oEk3rbM2KL0pj2miVezvB3pVzYsgI4snTWuX7dQ',
+// 		'callbackUrl'	=> 'http://localhost:8000/blog',
+// 		'utmSource' => 'learning'
+// 	]);
 
-	// Returns the http response body.
-$twoRandomPhotosOfSomePeoples = Unsplash::randomPhoto()
-    ->orientation('portrait')
-    ->term('people')
-    ->count(2)
-    ->toJson();
+// 	// Returns the http response body.
+// $twoRandomPhotosOfSomePeoples = Unsplash::randomPhoto()
+//     ->orientation('portrait')
+//     ->term('people')
+//     ->count(2)
+//     ->toJson();
 
-$photos = Unsplash::photos()->toJson();
+// $photos = Unsplash::photos()->toJson();
 
 ?>
 
 
 
-	<h1 class="mb-5">{{ $title }}</h1>
+	<h1 class="mb-3 text-center">{{ $title }}</h1>
+
+	<div class="row justify-content-center mb-3">
+		<div class="col-md-6">
+			<form action="/blog">
+				
+				<div class="input-group mb-3">
+				  <input type="text" class="form-control" placeholder="Search.."  name="search" aria-label="Recipient's username" aria-describedby="button-addon2">
+				  <div class="input-group-append">
+				    <button type="submit" class="btn btn-danger" type="button" id="button-addon2">Search</button>
+				  </div>
+				</div>
+
+			</form>
+		</div>
+	</div>
+
+
 
 	@if($posts->count())
 
@@ -51,13 +68,7 @@ $photos = Unsplash::photos()->toJson();
 	  </div>
 	</div>
 
-	@else
-
-	<p class="text-center fs-4">No. post found.</p>
-
-	@endif
-
-
+	
 	<div class="container">
 		<div class="row">
 
@@ -89,5 +100,11 @@ $photos = Unsplash::photos()->toJson();
 
 		</div>
 	</div>
+
+	@else
+
+	<p class="text-center fs-4">No. post found.</p>
+
+	@endif
 
 @endsection

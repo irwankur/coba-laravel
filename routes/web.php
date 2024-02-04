@@ -1,11 +1,13 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Models\Post;
+use App\Http\Controllers\DashboardController;
 use App\Models\Category;
-use App\Models\User;
-use App\Http\Controllers\CategoryController;
+
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,53 +19,45 @@ use App\Http\Controllers\PostController;
 |
 */
 
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 
- 
-Route::get('/', function () { 
-    return view('home', ['nama' => 'irwan', 'title' => 'Home' ]);
+Route::get('/', function () {
+    return view('home', [
+        "title" => "Home",
+        "active" => 'home'
+    ]);
 });
 
 Route::get('/about', function () {
-    $posts = [
-			[
-	    	'title' => 'About Blog',
-	    	'author' => 'irwan', 
-	    	'body' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-	    	'image' => 'irwan.jpg'
-	    	],
-	    	[
-	    	'title' => 'About Blog 2',
-	    	'author' => 'kurniawan', 
-	    	'body' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-	    	'image' => 'irwan.jpg'
-	    	]
-    	];
-
-
     return view('about', [
-	    	'title' => 'About',
-	    	'posts' => $posts
-    	]
-    );
+        'title' => 'About',
+        'active' => 'about',
+        'name' => 'Sandhika Galih',
+        'email' => 'sandhikagalih@gmail.com',
+        'image' => 'sandhika.jpg'
+    ]);
 });
 
-Route::get('/blog', [PostController::class, 'index']);
-
+Route::get('/posts', [PostController::class, 'index']);
 Route::get('/posts/{post:slug}', [PostController::class, 'show']);
 
-// Route::get('/categories/{category:slug}', [CategoryController::class, 'index']);
-
-Route::get('/categories/{category:slug}', function(Category $category){
-	return view('category', [
-		'title' => 'Post by Category : '.$category->name,
-		'posts' => $category->posts
-	]);
+Route::get('/categories', function() {
+    return view('categories', [
+        'title' => 'Post Categories',
+        'active' => 'categories',
+        'categories' => Category::all()
+    ]);
 });
 
-Route::get('/authors/{user:username}', function(User $user){
-	return view('category', [
-		'title' => 'Post by Author : '.$user->name, 
-		'posts' => $user->posts
-	]);
-});
+
+Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
+Route::post('/login', [LoginController::class, 'authenticate']);
+Route::post('/logout', [LoginController::class, 'logout']);
+
+Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
+Route::post('/register', [RegisterController::class, 'store']);
+
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');

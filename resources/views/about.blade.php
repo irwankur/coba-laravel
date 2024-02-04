@@ -1,13 +1,10 @@
-
-
+<!DOCTYPE html>
+<html lang="en">
 @extends('layouts.main')
 
 @section('container')
-	
-	@foreach($posts as $post)
-		<h1>{{ $post["title"] }}</h1>
-		<h5>{{ $post["author"] }}</h5>
-		<p>{{ $post["body"] }}</p>
-	@endforeach
-
+  <h1>Halaman About</h1>
+  <h3>{{ $name }}</h3>
+  <p>{{ $email }}</p>
+  <img src="img/{{ $image }}" alt="{{ $name }}" width="200" class="img-thumbnail rounded-circle">
 @endsection
